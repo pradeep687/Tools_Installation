@@ -1,1 +1,33 @@
-Steps to install jenkins in AWS linux server
+Steps to install jenkins in AWS linux server: (Reference Document:https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/)
+================================================================================================================================================
+STEP:1 Ensure that your software packages are up to date on your instance by using the following command to perform a quick software update:
+sudo yum update –y
+
+STEP:2 Add the Jenkins repo using the following command:
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+STEP:3 Import a key file from Jenkins-CI to enable installation from the package:
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+sudo yum upgrade
+
+STEP:4 Install Java:
+sudo yum install java-17-amazon-corretto -y
+
+STEP:5 Install Jenkins:
+sudo yum install jenkins -y
+
+STEP:6 Enable the Jenkins service to start at boot: 
+sudo systemctl enable jenkins
+
+STEP:7 Start Jenkins as a service:
+sudo systemctl start jenkins
+
+STEP:8 You can check the status of the Jenkins service using the command:
+sudo systemctl status jenkins
+
+STEP:9
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+**IF PERMISSION GOT DENIED THEN PROVIDE PERMISSION TO /var/lib/jenkins/secrets/initialAdminPassword AND TRY AGAIN THE STEP:9**
+sudo chmod +r /var/lib/jenkins/secrets/initialAdminPassword
